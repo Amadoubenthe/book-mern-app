@@ -28,7 +28,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="max-w-screen px-8 py-4 mx-auto border border-amber-300">
+    <header className="max-w-screen px-8 py-4 mx-auto">
       <nav className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Link to="/">
@@ -44,8 +44,8 @@ export default function Navbar() {
             />
           </div>
         </div>
-        <div className="realative border border-amber-600 flex items-center gap-4">
-          <div className="flex  border border-blue-500">
+        <div className="realative flex items-center gap-4">
+          <div className="flex">
             {currentUser ? (
               <>
                 <button onClick={handleDropdown} className="cursor-pointer">

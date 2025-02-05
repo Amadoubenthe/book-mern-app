@@ -24,11 +24,10 @@ export default function Navbar() {
 
   const handleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    console.log("Dropdown clicked", isDropdownOpen);
   };
 
   return (
-    <header className="max-w-screen px-8 py-4 mx-auto">
+    <header className="max-w-screen-2xl p-4 mx-auto">
       <nav className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Link to="/">

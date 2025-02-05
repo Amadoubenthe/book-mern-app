@@ -7,10 +7,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-      </Routes>
+      <main className="min-h-screen max-w-screen-2xl mx-auto p-4 font-primary">
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+        </Routes>
+      </main>
     </>
   );
 }

@@ -6,6 +6,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { CgShoppingCart } from "react-icons/cg";
 import avatar from "../../assets/avatar.png";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store/store";
 
 const navigation = [
   { id: 1, name: "Home", href: "/" },
@@ -20,6 +22,7 @@ const navigation = [
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const cartItems = useSelector((state: RootState) => state.cartSlice.books);
   const currentUser = true;
 
   const handleDropdown = () => {
@@ -82,7 +85,7 @@ export default function Navbar() {
           <Link to="/cart" className="bg-primary py-2 px-4 rounded-md">
             <div className="flex items-center gap-2">
               <CgShoppingCart />
-              <div>0</div>
+              <div>{cartItems.length > 0 ? cartItems.length : 0}</div>
             </div>
           </Link>
         </div>

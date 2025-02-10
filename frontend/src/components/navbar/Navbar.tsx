@@ -79,7 +79,7 @@ export default function Navbar() {
           <button className="hidden md:block">
             <FaRegHeart />
           </button>
-          <Link to="/about" className="bg-primary py-2 px-4 rounded-md">
+          <Link to="/cart" className="bg-primary py-2 px-4 rounded-md">
             <div className="flex items-center gap-2">
               <CgShoppingCart />
               <div>0</div>

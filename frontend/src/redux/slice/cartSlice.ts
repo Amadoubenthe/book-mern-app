@@ -1,44 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { Book } from "../../models/book.model";
 
 export interface CartState {
-  _id: number;
-  title: string;
-  description: string;
-  category: string;
-  trending: boolean;
-  coverImage: string;
-  oldPrice: number;
-  newPrice: number;
+  books: Book[];
 }
 
-const initialState: CartState[] = [];
+const initialState: CartState = {
+  books: [],
+};
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addCart: (state, action: PayloadAction<CartState>) => {
-      state.push(action.payload);
+    addCart: (state, action: PayloadAction<Book>) => {
+      const existingProduct = state.books.find(
+        (element) => element._id === action.payload._id
+      );
+      if (existingProduct) {
+        return;
+      } else {
+        state.books.push(action.payload);
+      }
     },
-
-    // increment: (state) => {
-    //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    //   // doesn't actually mutate the state because it uses the Immer library,
-    //   // which detects changes to a "draft state" and produces a brand new
-    //   // immutable state based off those changes
-    //   state.value += 1;
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload;
-    // },
+    removeCart: (state, action: PayloadAction<Book>) => {
+      state.books = state.books.filter(
+        (element) => element._id !== action.payload._id
+      );
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addCart } = cartSlice.actions;
+export const { addCart, removeCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import booksData from "../../../public/books.json";
 import BookCard from "../books/BookCard";
-import { CartState } from "../../redux/slice/cartSlice";
+import { Book } from "../../models/book.model";
 
 function TopSellers() {
-  const [books, setBooks] = useState<CartState[]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
   const [categories, setcategories] = useState<string[]>([]);
 
   useEffect(() => {

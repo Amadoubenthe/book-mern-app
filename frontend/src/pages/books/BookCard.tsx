@@ -1,33 +1,35 @@
-import book1 from "../../assets/books/book-1.png";
-function BookCard() {
+import { useDispatch } from "react-redux";
+import { addCart, CartState } from "../../redux/slice/cartSlice";
+import { getImgUrl } from "../../utils/getImgUrl";
+
+interface BookCardProps {
+  book: CartState;
+}
+
+function BookCard({ book }: BookCardProps) {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (cart: CartState) => {
+    dispatch(addCart(cart));
+  };
+
   return (
-    <div className="max-w-sm w-full lg:max-w-full lg:flex">
-      <img
-        className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-        src={book1}
-        title="Woman holding a mug"
-      ></img>
-      <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-        <div className="mb-8">
-          <div className="text-gray-900 font-bold text-xl mb-2">
-            Can coffee make you a better developer?
-          </div>
-          <p className="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
+    <div className="h-52 rounded-2xl shadow overflow-hidden flex gap-4">
+      <img className="" src={`${getImgUrl(book.coverImage)}`} alt="Tata" />
+      <div className="pt-5">
+        <h2 className="text-lg font-bold mb-2">{book.title}</h2>
+        <p className="font-light text-sm mb-2">{book.description}</p>
+        <div className="text-gray-500 text-xs my-4">
+          <span className="text-gray-600 font-extrabold">Price:</span>
+          <span className="ml-4">{book.oldPrice}</span>
         </div>
-        <div className="flex items-center">
-          <img
-            className="w-10 h-10 rounded-full mr-4"
-            src={book1}
-            alt="Avatar of Jonathan Reinink"
-          />
-          <div className="text-sm">
-            <p className="text-gray-600">Aug 18</p>
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={() => handleAddToCart(book)}
+          className="btn-primary"
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   );

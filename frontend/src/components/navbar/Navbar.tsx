@@ -10,8 +10,8 @@ import { useState } from "react";
 const navigation = [
   { id: 1, name: "Home", href: "/" },
   { id: 2, name: "About", href: "/about" },
-  { id: 3, name: "Contact", href: "/contact" },
-  { id: 4, name: "comprendre le monde", href: "/contact" },
+  { id: 3, name: "Login", href: "/login" },
+  { id: 4, name: "Register", href: "/register" },
   { id: 5, name: "Dashboard", href: "/user-dashboard" },
   { id: 6, name: "Orders", href: "/orders" },
   { id: 7, name: "Cart Page", href: "/cart" },
@@ -27,7 +27,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="max-w-screen-2xl p-4 mx-auto">
+    <header className="max-w-screen-2xl p-4 mx-auto relative">
       <nav className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Link to="/">
@@ -43,7 +43,7 @@ export default function Navbar() {
             />
           </div>
         </div>
-        <div className="realative flex items-center gap-4">
+        <div className="flex items-center gap-4">
           <div className="flex">
             {currentUser ? (
               <>
@@ -53,7 +53,7 @@ export default function Navbar() {
                 {/* Navigation */}
                 {isDropdownOpen && (
                   <>
-                    <div className="absolute w-48 right-10 top-16 bg-white shadow-lg rounded-md z-40">
+                    <div className="absolute w-48 top-16 right-0 bg-white shadow-lg rounded-md z-40">
                       <ul className="">
                         {navigation.map((nav) => {
                           return (

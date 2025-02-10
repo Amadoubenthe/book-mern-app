@@ -34,7 +34,7 @@ function TopSellers() {
       </div>
       {/* Carsd container */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="h-52 rounded-2xl shadow-2xl overflow-hidden flex gap-4">
+        <div className="h-52 rounded-2xl shadow overflow-hidden flex gap-4">
           <img className="" src={book1} alt="Tata" />
           <div className="pt-5">
             <h2 className="text-lg font-bold mb-2">Can coffee make</h2>

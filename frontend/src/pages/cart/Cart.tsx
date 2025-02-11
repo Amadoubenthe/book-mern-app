@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { CartState, removeCart } from "../../redux/slice/cartSlice";
+import { clearCart, removeCart } from "../../redux/slice/cartSlice";
 import { Book } from "../../models/book.model";
 import { getImgUrl } from "../../utils/getImgUrl";
 import { Link } from "react-router";
@@ -19,8 +19,9 @@ export default function Cart() {
   };
 
   const handleClearCart = () => {
-    // dispatch(clearCart());
+    dispatch(clearCart());
   };
+
   return (
     <>
       <div className="flex mt-12 h-full flex-col overflow-hidden bg-white shadow-xl">

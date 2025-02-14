@@ -1,6 +1,6 @@
 const Book = require("../models/book.model");
 
-const postABook = async (req, res) => {
+const addBook = async (req, res) => {
   try {
     const newBook = await Book({ ...req.body });
     await newBook.save();
@@ -14,7 +14,7 @@ const postABook = async (req, res) => {
 };
 
 // get all books
-const getAllBooks = async (req, res) => {
+const getBooks = async (req, res) => {
   try {
     const books = await Book.find().sort({ createdAt: -1 });
     res.status(200).send(books);
@@ -24,7 +24,22 @@ const getAllBooks = async (req, res) => {
   }
 };
 
+const getBookById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const book = await Book.findById(id);
+    if (!book) {
+      res.status(404).send({ message: "Book not Found!" });
+    }
+    res.status(200).send(book);
+  } catch (error) {
+    console.error("Error fetching book", error);
+    res.status(500).send({ message: "Failed to fetch book" });
+  }
+};
+
 module.exports = {
-  postABook,
-  getAllBooks,
+  addBook,
+  getBooks,
+  getBookById,
 };

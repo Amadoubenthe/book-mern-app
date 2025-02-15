@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, removeCart } from "../../redux/slice/cartSlice";
 import { Book } from "../../models/book.model";
 import { getImgUrl } from "../../utils/getImgUrl";
 import { Link } from "react-router";
 import { RootState } from "../../redux/store/store";
+import { clearCart, removeCart } from "../../redux/features/cart/cartSlice";
 
 export default function Cart() {
   const cartItems = useSelector((state: RootState) => state.cartSlice.books);

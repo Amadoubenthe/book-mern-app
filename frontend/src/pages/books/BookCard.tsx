@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
-import { addCart } from "../../redux/slice/cartSlice";
+
 import { getImgUrl } from "../../utils/getImgUrl";
 import { Book } from "../../models/book.model";
+import { addCart } from "../../redux/features/cart/cartSlice";
 
 interface BookCardProps {
   book: Book;

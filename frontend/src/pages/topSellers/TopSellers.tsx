@@ -2,10 +2,19 @@ import { useEffect, useState } from "react";
 import booksData from "../../../public/books.json";
 import BookCard from "../books/BookCard";
 import { Book } from "../../models/book.model";
+import { useGetBooksQuery } from "../../redux/features/cart/booksApi";
 
 function TopSellers() {
   const [books, setBooks] = useState<Book[]>([]);
   const [categories, setcategories] = useState<string[]>([]);
+
+  // const { data } = useGetBooksQuery();
+
+  const { data, error, isLoading } = useGetBooksQuery();
+
+  console.log("data: ", data);
+  console.log("error: ", error);
+  console.log("isLoading: ", isLoading);
 
   useEffect(() => {
     fetch("books.json")

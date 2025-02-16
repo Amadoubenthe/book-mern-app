@@ -1,31 +1,20 @@
 import { useEffect, useState } from "react";
-import booksData from "../../../public/books.json";
 import BookCard from "../books/BookCard";
-import { Book } from "../../models/book.model";
 import { useGetBooksQuery } from "../../redux/features/cart/booksApi";
 
 function TopSellers() {
-  const [books, setBooks] = useState<Book[]>([]);
   const [categories, setcategories] = useState<string[]>([]);
-
-  // const { data } = useGetBooksQuery();
-
-  const { data, error, isLoading } = useGetBooksQuery();
+  const { data = [], error, isLoading } = useGetBooksQuery();
 
   console.log("data: ", data);
   console.log("error: ", error);
   console.log("isLoading: ", isLoading);
 
   useEffect(() => {
-    fetch("books.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setBooks(data);
-        const categories = booksData.map((book) => book.category);
-        const uniqueCategories = [...new Set(categories)];
-        setcategories(uniqueCategories);
-      });
-  }, []);
+    const categories = data.map((book) => book.category);
+    const uniqueCategories = [...new Set(categories)];
+    setcategories(uniqueCategories);
+  }, [data]);
 
   return (
     <div className="py-10">
@@ -43,8 +32,8 @@ function TopSellers() {
           ))}
         </select>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {books.map((book) => (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+        {data.map((book) => (
           <BookCard key={book._id} book={book} />
         ))}
       </div>

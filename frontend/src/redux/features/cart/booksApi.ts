@@ -1,67 +1,31 @@
 // Need to use the React-specific entry point to allow generating React hooks
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import getBaseUrl from "../../../utils/baseUrl";
-
-// const baseQuery =
+import { Book } from "../../../models/book.model";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `${getBaseUrl()}`,
+  baseUrl: `${getBaseUrl()}/api`,
+  credentials: "include",
   prepareHeaders: (headers) => {
-    //   const token = (getState() as RootState).auth.token
     const token = localStorage.getItem("token");
 
-    // If we have a token set in state, let's assume that we should be passing it.
     if (token) {
-      headers.set("authorization", `Bearer ${token}`);
+      headers.set("Authorization", `Bearer ${token}`);
     }
 
     return headers;
   },
 });
 
-// Define a service using a base URL and expected endpoints
-// export const bookApi = createApi({
-//   reducerPath: "bookApi",
-//   //   baseQuery: fetchBaseQuery({ baseUrl: `${getBaseUrl()}/api/books` }),
-//   baseQuery,
-//   endpoints: (builder) => ({
-//     getBooks: builder.query({
-//       query: () => `/api/books`,
-//     }),
-//   }),
-// });
-
-export interface BooksResponse {
-  _id: string;
-  title: string;
-  description: string;
-  category: string;
-  trending: boolean;
-  coverImage: string;
-  oldPrice: number;
-  newPrice: number;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-
 export const bookApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/" }),
+  reducerPath: "bookApi",
+  baseQuery,
   tagTypes: ["Books"],
   endpoints: (build) => ({
-    getBooks: build.query<BooksResponse[], void>({
+    getBooks: build.query<Book[], void>({
       query: () => "books",
-      // providesTags: (result) =>
-      //   result ? result.map(({ id }) => ({ type: 'Posts', id })) : [],
+      providesTags: ["Books"],
     }),
-    // addPost: build.mutation<Post, Partial<Post>>({
-    //   query: (body) => ({
-    //     url: `posts`,
-    //     method: 'POST',
-    //     body,
-    //   }),
-    //   invalidatesTags: ['Posts'],
-    // }),
   }),
 });
 

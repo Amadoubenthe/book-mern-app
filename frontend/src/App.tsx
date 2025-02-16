@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Cart from "./pages/cart/Cart";
+import SingleBook from "./pages/books/SingleBook";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="books/:id" element={<SingleBook />} />
         </Routes>
       </main>
     </>

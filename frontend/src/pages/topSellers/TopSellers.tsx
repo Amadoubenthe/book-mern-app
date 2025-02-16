@@ -6,19 +6,24 @@ function TopSellers() {
   const [categories, setcategories] = useState<string[]>([]);
   const { data = [], error, isLoading } = useGetBooksQuery();
 
-  console.log("data: ", data);
-  console.log("error: ", error);
-  console.log("isLoading: ", isLoading);
-
   useEffect(() => {
     const categories = data.map((book) => book.category);
     const uniqueCategories = [...new Set(categories)];
     setcategories(uniqueCategories);
   }, [data]);
 
+  if (error) {
+    return <div>error</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
   return (
     <div className="py-10">
       <h1>Top Sellers</h1>
+
       <div className="mb-8 flex items-center">
         <select
           name="category"

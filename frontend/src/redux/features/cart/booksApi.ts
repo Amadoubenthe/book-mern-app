@@ -26,9 +26,12 @@ export const bookApi = createApi({
       query: () => "books",
       providesTags: ["Books"],
     }),
+    getBookById: build.query({
+      query: (id: string) => `books/${id}`,
+    }),
   }),
 });
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useGetBooksQuery } = bookApi;
+export const { useGetBooksQuery, useGetBookByIdQuery } = bookApi;

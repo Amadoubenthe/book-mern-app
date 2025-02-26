@@ -1,7 +1,7 @@
 export default function Login() {
   return (
     <>
-      <div className="border min-h-[calc(100vh-4rem)] flex justify-center items-center">
+      <div className="min-h-[calc(100vh-4rem)] flex justify-center items-center">
         <div className="w-[300px] shadow p-4">
           <h1 className="text-2xl font-semibold">Login</h1>
           <form>

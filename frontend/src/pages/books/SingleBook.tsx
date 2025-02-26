@@ -6,14 +6,25 @@ export default function SingleBook() {
   const { id } = useParams();
   const { data: book = {}, isLoading, isError } = useGetBookByIdQuery(id!);
 
-  if (isError)
+  if (isError) {
     return (
       <div className="text-red-500">
-        Erreur lors de la recuperation du livre
+        Erreur lors de la récupération du livre.
       </div>
     );
+  }
 
-  if (isLoading) return <div>Loading ...</div>;
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
+  if (!book) {
+    return (
+      <div className="text-gray-500">
+        Aucune donnée disponible pour ce livre.
+      </div>
+    );
+  }
 
   return (
     <div className="">
@@ -21,19 +32,19 @@ export default function SingleBook() {
         <img src={`${getImgUrl(book.coverImage)}`} alt={book.title} />
         <div>
           <div className="mt-2">
-            <span className="font-semibold">Autor: </span>{" "}
+            <span className="font-semibold">Autor: </span>
             <span>{book.category}</span>
           </div>
           <div className="mt-2">
-            <span className="font-semibold">Published: </span>{" "}
+            <span className="font-semibold">Published: </span>
             <span>{book.category}</span>
           </div>
           <div className="mt-2">
-            <span className="font-semibold">Categorie: </span>{" "}
+            <span className="font-semibold">Categorie: </span>
             <span>{book.category}</span>
           </div>
           <div className="mt-2">
-            <span className="font-semibold">Description: </span>{" "}
+            <span className="font-semibold">Description: </span>
             <span>{book.description}</span>
           </div>
         </div>
